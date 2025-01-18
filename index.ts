@@ -11,14 +11,14 @@ dotenv.config()
 const app = express();
 app.use(express.json())
 app.use(cors({
-  origin:["http://localhost:3000"],
+  origin:["http://localhost:3000","https://runu.vercel.app"],
   credentials:true
 }))
 app.use(express.urlencoded({extended:false}))
 const server = http.createServer(app); // Create an HTTP server
 const io = new Server(server, {
   cors: {
-    origin: '*', // Allow all origins for simplicity (configure for production)
+    origin: ["https://runu.vercel.app"], // Allow all origins for simplicity (configure for production)
     methods: ['GET', 'POST']
   }
 });
