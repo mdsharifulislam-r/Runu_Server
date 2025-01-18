@@ -83,7 +83,8 @@ export async function loginUser(req:Request,res:Response):Promise<any> {
         return response.json({
             status:true,
             message:"Login Successfully",
-            data:user
+            data:user,
+            token
         })
 
     } catch (error) {
