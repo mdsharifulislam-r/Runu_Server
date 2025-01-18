@@ -13,6 +13,8 @@ export async function registerUser(req:Request,res:Response):Promise<any> {
                 message:errors.array({onlyFirstError:true}).map(item=>item.msg)
             })
         }
+        await pool.execute('CREATE TABLE IF NOT EXISTS users (user_id int not null AUTO_INCREMENT PRIMARY KEY,name varchar(256),image varchar(256), email varchar(256),password varchar(256),friends varchar(256),request varchar(256))')
+        await pool.execute('CREATE TABLE IF NOT EXISTS messages (message_id int NOT null AUTO_INCREMENT PRIMARY KEY,senderId varchar(256),reciverId varchar(256), content varchar(256), roomId varchar(256), type varchar(256),seen boolean)')
         const user:UserType = req.body
 
         if(req.body.password.length<8){
